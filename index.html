@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amanuel Sisay | Portfolio</title>
+  <meta name="description" content="Portfolio website of Amanuel Sisay, Civil Engineer with 3 years of experience and Master's student in Civil and Environmental Engineering at the University of Brescia." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --soft: #1f2937;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.25);
+      --maxw: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #020617 0%, #0f172a 40%, #111827 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(92%, var(--maxw));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(2, 6, 23, 0.75);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      font-size: 1.1rem;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 90px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.08);
+      color: var(--accent);
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6vw, 4.7rem);
+      line-height: 1.05;
+      margin: 0 0 18px;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 62ch;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--accent);
+      color: #06202c;
+      border-color: transparent;
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card {
+      padding: 18px;
+    }
+
+    .stat-card strong {
+      font-size: 1.4rem;
+      display: block;
+    }
+
+    .stat-card span { color: var(--muted); font-size: 0.95rem; }
+
+    .profile-card {
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(56,189,248,0.12), rgba(255,255,255,0.03));
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #06202c;
+      margin-bottom: 18px;
+    }
+
+    .profile-card h3 { margin: 0 0 6px; font-size: 1.4rem; }
+    .profile-card p { margin: 0 0 16px; color: var(--muted); }
+
+    section {
+      padding: 28px 0 60px;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin: 0 0 12px;
+    }
+
+    .section-text {
+      color: var(--muted);
+      margin: 0 0 24px;
+      max-width: 70ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .info-card, .project-card, .contact-card {
+      padding: 22px;
+    }
+
+    .info-card h3,
+    .project-card h3,
+    .contact-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .info-card p,
+    .project-card p,
+    .contact-card p,
+    .timeline p {
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      font-size: 0.85rem;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: #cbd5e1;
+    }
+
+    .timeline {
+      padding: 22px;
+    }
+
+    .timeline-item {
+      padding: 0 0 20px 18px;
+      border-left: 2px solid rgba(56,189,248,0.35);
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      position: absolute;
+      left: -7px;
+      top: 3px;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item h3 { margin: 0 0 4px; }
+    .timeline-item small { color: #cbd5e1; }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      padding: 24px 0 40px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .stats { grid-template-columns: 1fr; }
+      .hero { padding-top: 60px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">Amanuel<span>Sisay</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">What I Do</a>
+        <a href="#projects">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">Civil Engineer & Master’s Student</div>
+        <h1>Hi, I’m <br />Amanuel Sisay</h1>
+        <p>
+          I am a civil engineer with three years of experience as a site engineer and office engineer. I am currently pursuing a Master’s degree in Civil and Environmental Engineering at the University of Brescia.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#about">About Me</a>
+          <a class="btn btn-secondary" href="#contact">Contact Me</a>
+        </div>
+        <div class="stats">
+          <div class="card stat-card">
+            <strong>3 Years</strong>
+            <span>Professional experience</span>
+          </div>
+          <div class="card stat-card">
+            <strong>Civil Eng.</strong>
+            <span>Academic background</span>
+          </div>
+          <div class="card stat-card">
+            <strong>Brescia</strong>
+            <span>Master’s studies</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card profile-card">
+        <div class="avatar">AS</div>
+        <h3>Amanuel Sisay</h3>
+        <p>Civil Engineer • Site Engineer • Office Engineer</p>
+        <div class="tags">
+          <span class="tag">Civil Engineering</span>
+          <span class="tag">Environmental Engineering</span>
+          <span class="tag">Project Experience</span>
+          <span class="tag">GitHub Ready</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-text">
+        I studied Civil Engineering and built my professional experience through 3 years of work as a site engineer and office engineer. This experience helped me develop strong skills in project support, site supervision, coordination, and technical documentation. I am now continuing my academic journey through a Master’s degree in Civil and Environmental Engineering at the University of Brescia.
+      </p>
+
+      <div class="grid-3">
+        <div class="card info-card">
+          <h3>Background</h3>
+          <p>
+            I have an academic foundation in Civil Engineering and practical professional experience in both field and office engineering roles.
+          </p>
+        </div>
+        <div class="card info-card">
+          <h3>Skills</h3>
+          <p>
+            Site supervision, office engineering, technical reporting, construction support, project coordination, and engineering problem-solving.
+          </p>
+        </div>
+        <div class="card info-card">
+          <h3>Goals</h3>
+          <p>
+            I aim to contribute to infrastructure and environmental projects where I can apply both my engineering experience and advanced academic training.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">What I Do</h2>
+      <p class="section-text">
+        My work combines practical engineering experience with academic development in civil and environmental engineering.
+      </p>
+
+      <div class="grid-3">
+        <div class="card info-card">
+          <h3>Site Engineering</h3>
+          <p>
+            Experience supporting site activities, supervising work progress, coordinating teams, and contributing to successful project implementation in the field.
+          </p>
+        </div>
+        <div class="card info-card">
+          <h3>Office Engineering</h3>
+          <p>
+            Experience in technical documentation, reporting, planning support, and office-based engineering coordination for construction and infrastructure projects.
+          </p>
+        </div>
+        <div class="card info-card">
+          <h3>Advanced Study</h3>
+          <p>
+            Currently deepening my knowledge through advanced study in Civil and Environmental Engineering at the University of Brescia.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Experience & Journey</h2>
+      <p class="section-text">
+        This section highlights my professional and academic path.
+      </p>
+
+      <div class="grid-3">
+        <article class="card project-card">
+          <h3>Site Engineer Experience</h3>
+          <p>
+            Worked on construction-related activities with responsibilities in site supervision, coordination, and support for effective project execution.
+          </p>
+          <div class="tags">
+            <span class="tag">Construction</span>
+            <span class="tag">Supervision</span>
+            <span class="tag">Coordination</span>
+          </div>
+        </article>
+
+        <article class="card project-card">
+          <h3>Office Engineer Experience</h3>
+          <p>
+            Supported office engineering work through technical reporting, documentation, planning assistance, and communication across project teams.
+          </p>
+          <div class="tags">
+            <span class="tag">Documentation</span>
+            <span class="tag">Reporting</span>
+            <span class="tag">Planning</span>
+          </div>
+        </article>
+
+        <article class="card project-card">
+          <h3>Master’s Study</h3>
+          <p>
+            Pursuing a Master’s degree in Civil and Environmental Engineering at the University of Brescia to expand my technical expertise and career opportunities.
+          </p>
+          <div class="tags">
+            <span class="tag">Master’s</span>
+            <span class="tag">Environmental</span>
+            <span class="tag">Brescia</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">Education & Experience</h2>
+      <p class="section-text">
+        A summary of my academic and professional development.
+      </p>
+
+      <div class="card timeline">
+        <div class="timeline-item">
+          <h3>Master’s Degree</h3>
+          <small>University of Brescia • Present</small>
+          <p>
+            Currently studying Civil and Environmental Engineering, with a focus on strengthening advanced engineering knowledge and environmental awareness.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <h3>Bachelor’s Degree</h3>
+          <small>Civil Engineering</small>
+          <p>
+            Completed undergraduate studies in Civil Engineering and built a solid foundation in engineering principles, construction practice, and technical problem-solving.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <h3>Professional Experience</h3>
+          <small>3 Years • Site Engineer and Office Engineer</small>
+          <p>
+            Worked in both site and office engineering roles, contributing to supervision, coordination, reporting, documentation, and daily project support.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-text">
+        Feel free to contact me for professional opportunities or collaboration.
+      </p>
+
+      <div class="grid-2">
+        <div class="card contact-card">
+          <h3>Get in touch</h3>
+          <div class="contact-list">
+            <div class="contact-item">Email: amasis352@gmail.com</div>
+            <div class="contact-item">GitHub: github.com/amanuelsisay07</div>
+            <div class="contact-item">LinkedIn: Available on request</div>
+          </div>
+        </div>
+
+        <div class="card contact-card">
+          <h3>Next step</h3>
+          <p>
+            Save this file as <strong>index.html</strong>, upload it to your GitHub repository, and enable GitHub Pages to publish your website online. For the best link, create a repository named <strong>amanuelsisay07.github.io</strong>.
+          </p>
+          <a class="btn btn-primary" href="mailto:amasis352@gmail.com">Email Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Amanuel Sisay. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
